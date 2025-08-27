@@ -60,24 +60,24 @@ https://github.com/gresajasharii/guitar-shop
 # Project Structure
 
 
-- **Routing:**
+### Routing
 - Brands.tsx
 - Models.tsx
 - GuitarDetails.tsx
 
-- **Data Flow:**
+### Data Flow
 - All data fetched via **Apollo Client** from `https://graphql-api-brown.vercel.app/api/graphql`
 - Queries live in `src/graphql/*`
 - Global Apollo provider is created in `src/apollo/client.ts` and mounted in `main.tsx`.
 
-- **Styling:**
+### Styling
 - Plain CSS in `index.css` following the provided Figma (hero, grids, cards, tabs, footer).
 
-- **i18n:**
+### i18n
 - `I18nProvider` + `useI18n()` in `src/i18n/i18n.tsx`
 - Strings in `src/i18n/strings.ts` (EN/SQ)
 - Footer language select updates the language (persisted in `localStorage`).
 
 # Hosting
 
-[The project is hosted on: ](https://guitar-shop-xi.vercel.app/)
+The project is hosted on: [(https://guitar-shop-xi.vercel.app/)]
