@@ -1,69 +1,83 @@
-# React + TypeScript + Vite
+# Online Guitar Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+A three page React + TypeScript app that lets you browse guitar brands, view models per brand, and see model details (specs & musicians).  
+Data comes from a public GraphQL API and is fetched with pollo Client.  
+Design follows the provided Figma and includes a language switcher (EN/SQ) in the footer.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Table of Contents
+1. [Features](#features)
+2. [Technologies Used](#technologies-used)
+3. [Installation and Setup](#installation-and-setup)
+   - [Frontend Setup](#frontend-setup)
+4. [Project Structure](#project-structure)
+5. [Hosting](#hosting)
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **Page 1 - Brands:** - Fetch and display all brands (name, origin, logo). Click a brand, navigates to its Models page. 
+- **Page 2 - Models:** - Search by model name (server-side; debounced). 
+- **Filter** by guitar type (Electric/Acoustic/Bass). Click a model, navigates to Guitar Details. 
+- **Page 3 - Guitar Details:** - Hero image + meta (type, price, description). 
+- **Tabs**: *Specs* and *Musicians*. 
+- **Musicians** show 2 at a time with dots/buttons to reveal 2 more. 
+- **Language switcher** (English/Albanian) in the footer.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# Technologies Used
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Frontend - **React** (Vite) + **TypeScript** 
+- **Apollo Client** (GraphQL) 
+- **React Router** 
+- **CSS** 
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+> No backend for this repo; the app consumes the public GraphQL API above.
+
+# Installation and Setup
+
+Ensure you have the following installed on your system:
+
+- **Node.js (v16 or later)**
+- **npm (Node Package Manager)**
+
+1. Clone the Repository: git clone:    
+https://github.com/gresajasharii/guitar-shop
+
+
+# Installation
+
+### Project setup
+
+- **cd ../online-guitar-shop**
+- **npm install**
+- **npm run dev**
+
+- **The app will be available at http://localhost:5174**
+
+
+# Project Structure
+
+
+- **Routing:**
+- Brands.tsx
+- Models.tsx
+- GuitarDetails.tsx
+
+- **Data Flow:**
+- All data fetched via **Apollo Client** from `https://graphql-api-brown.vercel.app/api/graphql`
+- Queries live in `src/graphql/*`
+- Global Apollo provider is created in `src/apollo/client.ts` and mounted in `main.tsx`.
+
+- **Styling:**
+- Plain CSS in `index.css` following the provided Figma (hero, grids, cards, tabs, footer).
+
+- **i18n:**
+- `I18nProvider` + `useI18n()` in `src/i18n/i18n.tsx`
+- Strings in `src/i18n/strings.ts` (EN/SQ)
+- Footer language select updates the language (persisted in `localStorage`).
+
+# Hosting
+
+[The project is hosted on: ](https://guitar-shop-xi.vercel.app/)
